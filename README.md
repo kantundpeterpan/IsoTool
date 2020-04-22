@@ -41,7 +41,8 @@ X,..,................,....
 These files can easily be edited in any spreadsheet or text editor.
 
 ### Molecule
-The Molecule file contains the elemental composition of the chemical species of interest.
+The Molecule file contains the elemental composition of the chemical species of interest
+in its neutral state.
 ```
 element,n
 C,54
