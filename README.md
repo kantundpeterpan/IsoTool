@@ -1,7 +1,8 @@
-# IsoTool
+# IsoTool ![](icon/program_icon.png?raw=True)
 Isotopologue and mass spectrum calculator
 
-## Dependencies
+## Installation
+### Dependencies
 all dependencies are available via pip
 - numpy
 - pandas
@@ -9,7 +10,6 @@ all dependencies are available via pip
 - IsoSpecPy
 - gooey
 
-## Installation
 ### Linux
 pip wheel TBD
 
@@ -48,7 +48,42 @@ C,54
 X,20
 ..,..
 ```
-Elements appearing in the molecule file need to have their isotopes defined in the
-Isotope file used for the calculations.
+**Elements appearing in the molecule file need to have their isotopes defined in the
+Isotope file used for the calculations.**
 
-## Usage
+### GUI
+<img src="doc/isotool.png" width=50% align="right" />
+Default parameters are taken from Ref. 1.
+
+### Output
+All outputs are in `csv` format, that can be edited in any spreadsheet or text editor.
+
+#### Centroids
+The `centroids.csv` file contains a table with m/z, p and the exact isotopic composition of each
+of the calculated isotopologues.
+
+#### Spectrum
+The `spectrum.csv`file contains the profile spectrum of the given chemical species after modeling 
+and summing Gaussian peaks for the calculated isotopolgues
+
+## Methodology
+The exact methodology and an example application are described in [1] . The underlying algorithm for
+the fast calculation of isotopologue probabilities (*IsoSpec*) has been described by *Łącki et al.*[2], while the
+workflow for Gaussian peak simulation has been heavily inspired by functionality available in
+mineXpert [3]. 
+
+## Implementation
+IsoTool is written in Python 3 and makes use of the *numpy* [4], *pandas*[5] and *scipy*[6] libraries as well as the Python bindings for *IsoSpec*[7].
+
+## References
+[1] Atze, Rusconi, Arthur ....
+
+[2] IsoSpec: Hyperfast Fine Structure Calculator Mateusz K. Łącki, Michał Startek, Dirk Valkenborg, and Anna Gambin Analytical Chemistry 2017 89 (6), 3272-3277 DOI: 10.1021/acs.analchem.6b01459
+
+[3] mineXpert: Biological Mass Spectrometry Data Visualization and Mining with Full JavaScript Ability, Filippo Rusconi, Journal of Proteome Research 2019 18 (5), 2254-2259, DOI: 10.1021/acs.jproteome.9b00099
+
+[4] Stéfan van der Walt, S. Chris Colbert and Gaël Varoquaux. The NumPy Array: A Structure for Efficient Numerical Computation, Computing in Science & Engineering, 13, 22-30 (2011), DOI:10.1109/MCSE.2011.37 
+
+[5] Wes McKinney. Data Structures for Statistical Computing in Python, Proceedings of the 9th Python in Science Conference, 51-56 (2010) 
+
+[6] Virtanen, P., Gommers, R., Oliphant, T.E. et al. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nat Methods 17, 261–272 (2020). https://doi.org/10.1038/s41592-019-0686-2
