@@ -73,7 +73,7 @@ workflow for Gaussian peak simulation has been heavily inspired by functionality
 mineXpert [3]. 
 
 ## Implementation
-IsoTool is written in Python 3 and makes use of the *numpy* [4], *pandas*[5] and *scipy*[6] libraries as well as the Python bindings for *IsoSpec*[7].
+IsoTool is written in Python 3 and makes use of the *numpy* [4], *pandas*[5] and *scipy*[6] libraries as well as the Python bindings for *IsoSpec*[7]. The GUI was created using the *gooey* package [7].
 
 ## References
 [1] Atze, Rusconi, Arthur ....
@@ -87,3 +87,5 @@ IsoTool is written in Python 3 and makes use of the *numpy* [4], *pandas*[5] and
 [5] Wes McKinney. Data Structures for Statistical Computing in Python, Proceedings of the 9th Python in Science Conference, 51-56 (2010) 
 
 [6] Virtanen, P., Gommers, R., Oliphant, T.E. et al. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nat Methods 17, 261–272 (2020). https://doi.org/10.1038/s41592-019-0686-2
+
+[7] https://github.com/chriskiehl/Gooey
