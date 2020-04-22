@@ -58,11 +58,16 @@ def main():
     
     parser.add_argument('-o', '--output_folder', metavar='Output Folder', type=str, widget='DirChooser',
                         default = folder)    
-    parser.add_argument('-z', '--charge', metavar='Charge', default=1,
-                        dest='z', type=int)
+    parser.add_argument('-z', '--charge', metavar='Charge',
+                        help='z, adds protons and recalculates m/z accordingly',
+                        default=1, dest='z', type=int)
     
-    parser.add_argument('-r', '--resolution', metavar='Resolution', type=int, default=40000)
-    parser.add_argument('-bs', '--binsize', type=float, default=0.005)
+    parser.add_argument('-r', '--resolution', metavar='Resolution',
+                        help='m/z*1/FWHM, determines Gaussian peak width',
+                        type=int, default=40000)
+    parser.add_argument('-bs', '--binsize',
+                        help='for summing Gaussian peaks of isotopologues',
+                        type=float, default=0.005)
     parser.add_argument('-ps', '--points', help='no. of points for Gaussian peak',
                         type=int, default=250)
     parser.add_argument('-dmz', '--delta_mz', metavar = 'Delta m/z',
@@ -89,7 +94,7 @@ def main():
             assert e in isotopes.index
             temp_masses = tuple(isotopes.loc[e].atomic_mass.values)
             masses.append(temp_masses)
-            temp_probs = tuple(isotopes.loc[e].isotopic_composition.values)
+            temp_probs = tuple(isotopes.loc[e].abundance.values)
             probs.append(temp_probs)
         except:
             raise ValueError('Element %s has no defined isotopes' % e)
@@ -103,16 +108,16 @@ def main():
     confs = i.getConfs()
     
     confs = pd.DataFrame(confs).transpose()
-    confs.columns = ['m', 'p', 'isotopologue']
+    confs.columns = ['mz', 'p', 'isotopologue']
     confs.p = confs.p.astype(np.float64).apply(np.exp)
 
-    confs.m = (confs.m+args.z*m_proton)/args.z
-    confs = confs.sort_values('m')
+    confs.mz = (confs.mz+args.z*m_proton)/args.z
+    confs = confs.sort_values('mz')
 
     f = isotopes.loc[elements]
-    iso_cols = [''.join([str(y),str(x)]) for (x,y) in zip(f.index, f.isotope)]
+    iso_cols = [''.join([str(y),str(x)]) for (x,y) in zip(f.index, f.mass_number)]
     temp_df = pd.DataFrame.from_records(confs.isotopologue, columns=iso_cols)
-    confs = pd.concat([confs[['m', 'p']].reset_index(drop=True),
+    confs = pd.concat([confs[['mz', 'p']].reset_index(drop=True),
                        temp_df.reset_index(drop=True)],
                       axis=1,
                       )
@@ -120,7 +125,7 @@ def main():
     print(confs.head().to_string())
     
         
-    spectrum = peak_shaper(confs[['m', 'p']].values,
+    spectrum = peak_shaper(confs[['mz', 'p']].values,
                            args.resolution,
                            delta_mz = args.delta_mz,
                            binsize = args.binsize,

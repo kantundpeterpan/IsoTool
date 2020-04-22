@@ -1,4 +1,4 @@
-element_symbol,isotope,atomic_mass,isotopic_composition
+element_symbol,mass_number,atomic_mass,abundance
 H,1,1.007825032239,0.9998857
 H,2,2.0141017781212,0.0001157
 O,16,15.9949146195717,0.9975716
