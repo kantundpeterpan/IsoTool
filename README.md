@@ -54,6 +54,7 @@ Isotope file used for the calculations.**
 
 ### GUI
 <img src="doc/isotool.png" width=50% align="right" />
+
 Default parameters are taken from Ref. 1.
 
 ### Output
