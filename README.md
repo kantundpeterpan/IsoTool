@@ -62,11 +62,11 @@ All outputs are in `csv` format, that can be edited in any spreadsheet or text e
 
 #### Centroids
 The `centroids.csv` file contains a table with m/z, p and the exact isotopic composition of each
-of the calculated isotopologues.
+of the calculated isotopologue.
 
 #### Spectrum
-The `spectrum.csv`file contains the profile spectrum of the given chemical species after modeling 
-and summing Gaussian peaks for the calculated isotopolgues
+The `spectrum.csv` file contains the profile spectrum of the given chemical species after modeling 
+and summing Gaussian peaks for the calculated isotopolgues.
 
 ## Methodology
 The exact methodology and an example application are described in [1] . The underlying algorithm for
