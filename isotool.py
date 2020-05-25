@@ -22,7 +22,7 @@ data_folder = os.path.join(folder,'data')
 print(folder)
 
 m_proton = 1.007825032239 - 0.0005488 #H - electron (amu)
-
+m_electron = 0.0005488
 
 @Gooey(program_name='IsoTool',
        image_dir=icon_folder
@@ -67,7 +67,7 @@ def main():
                         type=int, default=40000)
     parser.add_argument('-bs', '--binsize',
                         help='for summing Gaussian peaks of isotopologues',
-                        type=float, default=0.005)
+                        type=float, default=0.002)
     parser.add_argument('-ps', '--points', help='no. of points for Gaussian peak',
                         type=int, default=250)
     parser.add_argument('-dmz', '--delta_mz', metavar = 'Delta m/z',
@@ -82,9 +82,12 @@ def main():
     isotopes = pd.read_csv(args.isotopes,
                        index_col='element_symbol').dropna()
     
-    mol = pd.read_csv(args.Molecule)
+    mol = pd.read_csv(args.Molecule).set_index('element')
     
-    elements =  [e for e in mol.element.values if mol.set_index('element').loc[e].n>0]
+    mol.loc['H','n'] += args.z
+    
+    elements =  [e for e in mol.reset_index().element.values if mol.loc[e].n>0]
+
     atoms = [n for n in mol.n.values if n>0]
     masses = []        
     probs = []
@@ -111,7 +114,7 @@ def main():
     confs.columns = ['mz', 'p', 'isotopologue']
     confs.p = confs.p.astype(np.float64).apply(np.exp)
 
-    confs.mz = (confs.mz+args.z*m_proton)/args.z
+    confs.mz = (confs.mz-m_electron)/args.z
     confs = confs.sort_values('mz')
 
     f = isotopes.loc[elements]
