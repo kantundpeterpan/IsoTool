@@ -1,4 +1,4 @@
-# IsoTool ![](icon/program_icon.png?raw=True)
+# IsoTool ![](icon/program_icon.png?raw=True) [![DOI](https://zenodo.org/badge/257837587.svg)](https://zenodo.org/badge/latestdoi/257837587)
 Isotopologue and mass spectrum calculator
 
 ## Installation
