@@ -78,7 +78,7 @@ mineXpert [3].
 IsoTool is written in Python 3 and makes use of the *numpy* [4], *pandas*[5] and *scipy*[6] libraries as well as the Python bindings for *IsoSpec*[2]. The GUI was created using the *gooey* package [7].
 
 ## References
-[1] Atze, Rusconi, Arthur ....
+[1] Atze, H.; Rusconi, F.; Arthur, M. Heavy Isotope Labeling and Mass Spectrometry Reveal Unexpected Remodeling of Bacterial Cell Wall Expansion in Response to Drugs. bioRxiv 2021. https://doi.org/10.1101/2021.08.06.454924.
 
 [2] IsoSpec: Hyperfast Fine Structure Calculator Mateusz K. Łącki, Michał Startek, Dirk Valkenborg, and Anna Gambin Analytical Chemistry 2017 89 (6), 3272-3277 DOI: 10.1021/acs.analchem.6b01459
 
